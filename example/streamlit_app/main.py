@@ -6,6 +6,8 @@ import sys
 import time
 import traceback
 
+from chat2plot import ResponseType, chat2plot
+from chat2plot.chat2plot import Chat2Vega
 import pandas as pd
 import streamlit as st
 from plotly.graph_objs import Figure
@@ -17,26 +19,6 @@ sys.path.append("../../")
 # From here down is all the StreamLit UI.
 st.set_page_config(page_title="Chat2Plot Demo", page_icon=":robot:", layout="wide")
 st.header("Chat2Plot Demo")
-
-
-def dynamic_install(module):
-    sleep_time = 30
-    dependency_warning = st.warning(
-        f"Installing dependencies, this takes {sleep_time} seconds."
-    )
-    subprocess.Popen([f"{sys.executable} -m pip install {module}"], shell=True)
-    # wait for subprocess to install package before running your actual code below
-    time.sleep(sleep_time)
-    # remove the installing dependency warning
-    dependency_warning.empty()
-
-
-# https://python.plainenglish.io/how-to-install-your-own-private-github-package-on-streamlit-cloud-eb3aaed9b179
-try:
-    from chat2plot import ResponseType, chat2plot
-    from chat2plot.chat2plot import Chat2Vega
-except ModuleNotFoundError:
-    dynamic_install(f"git+https://github.com/Shakurova/chat2plot.git")
 
 
 def initialize_logger():
