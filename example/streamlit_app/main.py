@@ -124,7 +124,7 @@ if api_key and csv_file:
                         config = res.config
                         if isinstance(config, BaseModel):
                             st.code(
-                                config.json(indent=2, exclude_none=True),
+                                config.json(indent=2, exclude_unset=True),
                                 language="json",
                             )
                         else:
